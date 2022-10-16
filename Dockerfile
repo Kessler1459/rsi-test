@@ -12,4 +12,5 @@ ENV INITIAL_CRYPTO=
 
 EXPOSE 8000
 
+RUN ["chmod", "+x", "./run.sh"]
 CMD ./run.sh
