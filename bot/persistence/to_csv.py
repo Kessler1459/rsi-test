@@ -4,7 +4,7 @@ import pandas as pd
 
 
 class CSV(Persistence):
-    CSV_FOLDER = "../data"
+    CSV_FOLDER = "./data"
 
     def __init__(self, pair: str, columns: list[str]) -> None:
         self.filename = f"{self.CSV_FOLDER}/{pair}.csv"

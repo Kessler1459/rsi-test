@@ -6,14 +6,14 @@ RUN mkdir repo/root
 ADD /bot repo/root/bot
 
 
-WORKDIR repo/root/bot
+WORKDIR /repo/root
 
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install -r ./bot/requirements.txt
 
 ENV RSI_API_KEY=
 ENV PAIR=
 ENV INITIAL_USDT=
 ENV INITIAL_CRYPTO=
 
-CMD ["python", "-u", "main.py"]
+CMD ["python", "-u", "./bot/main.py"]
