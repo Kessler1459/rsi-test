@@ -1,8 +1,12 @@
 FROM python:3.10-slim-buster
 
-ADD /bot /bot
+RUN mkdir repo
+RUN mkdir repo/root
 
-WORKDIR /bot
+ADD /bot repo/root/bot
+
+
+WORKDIR repo/root/bot
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt

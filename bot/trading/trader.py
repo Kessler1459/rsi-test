@@ -18,7 +18,7 @@ class Trader:
         self.simulator = simulator
 
     def _log_buy(self, amount: float, price: float) -> None:
-        self._persistence.append_to_csv({
+        self._persistence.write_buy({
             'Amount': amount,
             'Buy price': f"{price}$",
             'Total buy': f"{amount * price}$",
@@ -29,7 +29,7 @@ class Trader:
         pass
 
     def _log_sell(self, price: float, ratio: float, gain_loss: float, total: float, date: datetime) -> None:
-        self._persistence.edit_last_row({
+        self._persistence.write_sell({
             'Sell price': f"{price}$",
             'Ratio': f"{ratio}%",
             'Gain/Loss': f"{gain_loss}$",
@@ -50,9 +50,9 @@ class Trader:
             ratio = ((buy_price - self._bought_price) /
                      self._bought_price) * 100 if self._bought_price else 0.0
             print(f"#### USDT: {self.usdt}$    #### Crypto: {self.crypto}    #### RSI:{format(rsi,'.2f')}    #### Ratio: {format(ratio,'.2f')}% ####")
-            if not self.crypto and rsi <= 30:  # 30
+            if not self.crypto and rsi <= 50:  # 30
                 self._buy(sell_price)
-            elif self.crypto and rsi >= 70:  # 70
+            elif self.crypto and rsi >= 51:  # 70
                 self._sell(buy_price, ratio)
                 print(f"Ratio: {round(ratio, 4)}%")
             time.sleep(16)

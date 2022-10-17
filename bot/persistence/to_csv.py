@@ -4,7 +4,7 @@ import pandas as pd
 
 
 class CSV(Persistence):
-    CSV_FOLDER = "/csv"
+    CSV_FOLDER = "../data"
 
     def __init__(self, pair: str, columns: list[str]) -> None:
         self.filename = f"{self.CSV_FOLDER}/{pair}.csv"
@@ -20,4 +20,4 @@ class CSV(Persistence):
 
     def write_buy(self, row: dict):
         use_header = not isfile(self.filename)
-        pd.DataFrame([row]).to_csv(self.filename, mode='a', index=False, header=use_header)
+        pd.DataFrame([row]).to_csv(self.filename, mode='w' if use_header else 'a', index=False, header=use_header)

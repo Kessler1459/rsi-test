@@ -1,8 +1,10 @@
 FROM python:3.10-slim-buster
 
-ADD /front /front
+RUN mkdir root
 
-WORKDIR /front
+ADD /front root/front
+
+WORKDIR root/front
 
 RUN pip install --upgrade pip
 RUN pip install -r ./requirements.txt
