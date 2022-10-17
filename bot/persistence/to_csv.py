@@ -4,8 +4,10 @@ import pandas as pd
 
 
 class CSV(Persistence):
+    CSV_FOLDER = "/csv"
+
     def __init__(self, pair: str, columns: list[str]) -> None:
-        self.filename = f"{pair}.csv"
+        self.filename = f"{self.CSV_FOLDER}/{pair}.csv"
         self.columns = columns
 
     def write_sell(self, row: dict):

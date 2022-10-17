@@ -16,13 +16,13 @@ with open("./views/table.html", "r", encoding="utf-8") as f:
 
 @app.get("/", response_class=HTMLResponse)
 async def root():
-    csvs = [file.replace('.csv','') for file in os.listdir('../') if file.endswith('.csv')]
+    csvs = [file.replace('.csv','') for file in os.listdir('./csv/') if file.endswith('.csv')]
     anchors = "".join([f"<a href='/{file}'>{file}</a>" for file in csvs])
     return index_template.format(anchors=anchors or "Any csv yet")
 
 @app.get("/{pair}", response_class=HTMLResponse)
 async def pair_table(pair: str):
     pair = pair.upper().replace('/','')
-    file = pandas.read_csv(f"../{pair}.csv")
+    file = pandas.read_csv(f"./csv/{pair}.csv")
     return table_template.format(table=file.to_html(classes='fl-table'),pair=pair)
 
