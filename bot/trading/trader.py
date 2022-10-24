@@ -62,9 +62,9 @@ class Trader:
             price = self._binance_api.buy_price if self.crypto else self._binance_api.sell_price
             ratio = ((price - self._bought_price) / self._bought_price) * 100 if self._bought_price else 0.0
             print(f"#### USDT: {format(self.usdt,'.2f')}$    #### Crypto: {self.crypto}    #### RSI:{format(rsi,'.2f')}    #### Ratio: {format(ratio,'.2f')}% ####")
-            if not self._bought_price and rsi <= 50:  # 30
+            if not self._bought_price and rsi <= 30:  # 30
                 self._buy()
-            elif self._bought_price and rsi >= 51:  # 70
+            elif self._bought_price and rsi >= 70:  # 70
                 self._sell()
             time.sleep(16)
 

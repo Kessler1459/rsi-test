@@ -1,8 +1,9 @@
 from urllib.error import HTTPError
-import requests
-import os
+from requests.exceptions import ConnectionError
 from time import sleep
 from requests import JSONDecodeError
+import requests
+import os
 
 class Trend:
     def __init__(self):
